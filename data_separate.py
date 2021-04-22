@@ -23,11 +23,10 @@ def main():
     f.close()
 
     for location in locations:
-        filename = "input_data/" + location + "parsedData"
+        filename = "input_data/" + location + "parsedData.csv"
         g = open(filename, "w")
-        for jj in range(len(lists[locations.index(location)])):
-            g.writelines(lists[locations.index(location)][jj])
-            g.write("\n")
+        write = csv.writer(g)
+        write.writerows(lists[locations.index(location)])
         g.close()
 
 
