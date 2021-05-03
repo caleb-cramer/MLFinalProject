@@ -256,7 +256,7 @@ def get_aus_frequencies(MyPyTable, col_name):
     Returns:
         values, counts (string, int): name of value and its frequency"""
 
-    rain_col = MyPyTable.get_column("RainToday")
+    rain_col = MyPyTable.get_column(col_name)
     row_index_to_drop = []
     print("range:", len(rain_col), len(MyPyTable.data))
     for i in range(len(rain_col)):
@@ -270,18 +270,18 @@ def get_aus_frequencies(MyPyTable, col_name):
             row_to_drop.append(MyPyTable.data[i])
 
     MyPyTable.drop_rows(row_to_drop)
-    return MyPyTable
+    months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+    month_col = MyPyTable.get_column('Date')
+    yes_col = []
+    for month in months:
+        yes = 0
+        for i in range(len(month_col)):
+            if month in month_col[i]:
+                yes = yes + 1
+        yes_col.append(yes)
+    print(months, yes_col)
 
-    '''for value in col:
-        if value not in values:
-            # haven't seen this value before
-            values.append(value)
-            counts.append(1)
-        elif value in values:
-                index = values.index(value)
-                counts[index] += 1
-
-    return values, counts'''
+    return months, yes_col
 
 def mpg_val_check(num, values, counts, value):
     """Checks mpg values and sees if they already previously exist
