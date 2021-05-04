@@ -61,6 +61,32 @@ def nestedListToList(nested):
     """
     return [ii for lis in nested for ii in lis]
 
+def compute_bootstrapped_sample(table):
+    n = len(table)
+    sample = []
+    for _ in range(n):
+        rand_index = random.randrange(0, n)
+        sample.append(table[rand_index])
+    return sample
+
+def random_stratified_split(X, y, test_size = 1/3):
+    X_test = []
+    X_train = []
+
+    y_test = []
+    y_train = []
+    group_names, group_subtables= group_by(X, y)
+    for ii, table in enumerate(group_subtables):
+        split_index = math.ceil(len(table) * test_size)
+        X_test.append(table[:split_index])
+        for jj in range(len(table[:split_index])):
+            y_test.append(group_names[ii])
+        X_train.append(table[split_index:])
+        for jj in range(len(table[split_index:])):
+            y_train.append(group_names[ii])
+
+    
+    return nestedListToList(X_train), nestedListToList(X_test), y_train, y_test
 
 def group_by(xVals, yVals):
     """collects all xVals by their yVals
