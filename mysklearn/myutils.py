@@ -207,7 +207,6 @@ def compute_entropy(instances, available_attributes, index):
     mypy = MyPyTable(available_attributes, instances)
     classes = mypy.get_column(-1)
     attributes = mypy.get_column(index)
-    print(attributes)
     temp = set(attributes)
     __, tables = group_by(attributes, classes)
     totals = []

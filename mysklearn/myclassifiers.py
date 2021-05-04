@@ -598,6 +598,7 @@ class MyRandomForestClassifier:
             for tree in self.best_M_trees:
                 treeResults.append(self.tdidt_predict(self.header, tree, instance))
             results.append(myutils.findMostFrequent(treeResults))
+            print(treeResults)
         return results
             
 
