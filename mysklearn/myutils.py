@@ -279,38 +279,44 @@ def get_aus_frequencies(MyPyTable, col_name):
             if month in month_col[i]:
                 yes = yes + 1
         yes_col.append(yes)
-    print(months, yes_col)
 
     return months, yes_col
 
-def mpg_val_check(num, values, counts, value):
-    """Checks mpg values and sees if they already previously exist
+def get_sea_frequencies(MyPyTable, col_name):
+    """Gets the frequency and count of a column by name
 
     Args:
-        num(int): ranking of mpg
-        values(list): values list
-        counts(list): counts of each value list
-        value(int): int in values list
+        MyPyTable(MyPyTable): self of MyPyTable
+        col_name(str): name of the column
 
     Returns:
         values, counts (string, int): name of value and its frequency"""
-    entered = False
-    if num in values:
-        index = values.index(num)
-        if entered == True:
-            counts.append(1)
-        if counts[index] > 0 and num in values:
-            counts[index] += 1
-    else:
-        values.append(num)
-        entered = True
-        if num in values:
-            index = values.index(num)
-        if entered == True:
-            counts.append(1)
-        if counts[index] > 0 and num in values:
-            counts[index] += 1
-    return values, counts
+
+    rain_col = MyPyTable.get_column(col_name)
+    row_index_to_drop = []
+    print("range:", len(rain_col), len(MyPyTable.data))
+    for i in range(len(rain_col)):
+        if rain_col[i] == "FALSE":
+            row_index_to_drop.append(i)
+    
+    count = 0
+    row_to_drop = []
+    for i in range(len(MyPyTable.data)):
+        if i in row_index_to_drop:
+            row_to_drop.append(MyPyTable.data[i])
+
+    MyPyTable.drop_rows(row_to_drop)
+    months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+    month_col = MyPyTable.get_column('DATE')
+    yes_col = []
+    for month in months:
+        yes = 0
+        for i in range(len(month_col)):
+            if month in month_col[i]:
+                yes = yes + 1
+        yes_col.append(yes)
+
+    return months, yes_col
 
 def get_mpg_frequencies(MyPyTable, col_name):
     """Gets the frequency and count of a column by name
