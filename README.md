@@ -18,3 +18,9 @@ Eric Av and Caleb Cramer
 ## Potential impact of the results
 1. **Why should I care?**: These results can help us predict rainfall on a given day, week, even month averages due to the dataset being from 10 consecutive years all over Australia’s regions. Therefore this might have been useful when the fires were raging in Australia last year to forecast rain based on a previous years.
 1. **Who cares?**: Well Eric and I want to get a good grade so we care. Also anyone who lives in Australia might care, even though the data is old-ish. Fellow machine learning people. Meteorologists too.
+
+## TODO
+1. Run the algo 5 times for each variation of N,M,F and print outthe values, the accuracy, and confusion matrices
+    1. Wide range of values and large numbers for N
+1. Output normal decision tree too
+
