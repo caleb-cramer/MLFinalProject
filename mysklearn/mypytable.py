@@ -54,33 +54,23 @@ class MyPyTable:
         Notes:
             Raise ValueError on invalid col_identifier
         """
-
-        # if col_identifier not in self.column_names:
-        #     raise ValueError("Not an option")
-        # else:
-        #    col_index = self.column_names.index(col_identifier)
-        
-        try:
-            # Index is valid
-            col_index = self.column_names.index(col_identifier)
-            n = len(self.data)
-
-            # Initialize list to populate
-            col = []
-            for i in range(n):
-                # Check if value is missing
-                if (self.data[i][col_index] == "NA"):
-                    # Check if user wants to include missing values
-                    if (include_missing_values):
-                        col.append("NA")
-                else:
-                    # Add data to list
-                    col.append(self.data[i][col_index])
-
-            return col
-        except ValueError:
-            print(col_identifier, "is not a valid id")
-            pass
+        if (isinstance(col_identifier, int) == True):
+             col_index = col_identifier
+        else:
+            try:
+                col_index = self.column_names.index(col_identifier)
+            except ValueError:
+                print("Not an option")
+                
+        col = []
+        if (not include_missing_values):
+            for row in self.data:
+                if (row[col_index] != "NA"):
+                    col.append(row[col_index])
+        else:
+            for row in self.data:
+                col.append(row[col_index])
+        return col
 
     def convert_to_numeric(self):
         """Try to convert each value in the table to a numeric type (float).
