@@ -1,7 +1,10 @@
 # we are going to use Flask, a micro web framework
 import os
-import pickle 
-from flask import Flask, jsonify, request 
+import pickle
+
+from flask import Flask
+from flask import render_template
+from flask import request, jsonify, redirect
 
 # make a Flask app
 app = Flask(__name__)
