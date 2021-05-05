@@ -22,15 +22,16 @@ def predict():
     date = request.args.get("att0", "")
     t_Max = request.args.get("att1", "")
     t_Min = request.args.get("att2", "")
-    rain = request.args.get("att2", "")
+    # rain = request.args.get("att3", "")
 
-    prediction = predict_rain_well([date, t_Max, t_Min, rain])
+    prediction = predict_rain_well([date, t_Max, t_Min])
+    print([date, t_Max, t_Min])
 
     if prediction is not None:
         result = {"prediction": prediction}
         return jsonify(result), 200
     else:
-        return "Error making prediction", [date, t_Max, t_Min, rain], 400
+        return "Error making prediction", 400
 
 def tdidt_predict(header, tree, instance):
     info_type = tree[0]
