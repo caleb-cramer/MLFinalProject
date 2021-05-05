@@ -16,6 +16,46 @@ def index():
     # return content and a status code
     return "<h1>Welcome to my App</h1>", 200
 
+@app.route("/predict", methods=["GET"])
+def predict():
+    # DATE,TMAX,TMIN,RAIN for seattle
+    date = request.args.get("DATE", "")
+    t_Max = request.args.get("TMAX", "")
+    t_Min = request.args.get("TMIN", "")
+    rain = request.args.get("RAIN", "")
+
+    prediction = predict_rain_well(date, t_Max, t_Min, rain)
+
+    if prediction is not None:
+        result = {"prediction": prediction}
+        return jsonify(result), 200
+    else:
+        return "Error making prediction", 400
+
+def tdidt_predict(header, tree, instance):
+    info_type = tree[0]
+    if info_type == "Attribute":
+        attribute_index = header.index(tree[1])
+        instance_value = instance[attribute_index]
+        # now I need to find which "edge" to follow recursively
+        for i in range(2, len(tree)):
+            value_list = tree[i]
+            if value_list[1] == instance_value:
+                # we have a match!! recurse!!
+                return tdidt_predict(header, value_list[2], instance)
+    else: # "Leaf"
+        return tree[1] # leaf class label
+
+def predict_rain_well(instance):
+    infile = open("tree.p", "rb")
+    header, tree = pickle.load(infile)
+    infile.close()
+
+    try: 
+        return tdidt_predict(header, tree, instance) # recursive function
+    except:
+        return None
+
 '''# one for the /predict 
 @app.route("/predict", methods=["GET"])
 def predict():
