@@ -19,8 +19,10 @@ Eric Av and Caleb Cramer
 1. **Why should I care?**: These results can help us predict rainfall on a given day, week, even month averages due to the dataset being from 10 consecutive years all over Australia’s regions. Therefore this might have been useful when the fires were raging in Australia last year to forecast rain based on a previous years.
 1. **Who cares?**: Well Eric and I want to get a good grade so we care. Also anyone who lives in Australia might care, even though the data is old-ish. Fellow machine learning people. Meteorologists too.
 
-## How to Run
-
+## How to Run our Heroku App
+Visit https://rain-app-eric-caleb.herokuapp.com
+Input endpoints in result? as -> att0='year-month' -> att1='float' (high temp in F) -> att2='float' (low temp in F)
+Example: https://rain-app-eric-caleb.herokuapp.com/predict?att0=13-Aug&att1=89.0&att2=54.0
 
 ## Project Organization
 
