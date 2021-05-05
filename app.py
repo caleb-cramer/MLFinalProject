@@ -19,10 +19,10 @@ def index():
 @app.route("/predict", methods=["GET"])
 def predict():
     # DATE,TMAX,TMIN,RAIN for seattle
-    date = request.args.get("DATE", "")
-    t_Max = request.args.get("TMAX", "")
-    t_Min = request.args.get("TMIN", "")
-    rain = request.args.get("RAIN", "")
+    date = request.args.get("att0", "")
+    t_Max = request.args.get("att1", "")
+    t_Min = request.args.get("att2", "")
+    rain = request.args.get("att2", "")
 
     prediction = predict_rain_well(date, t_Max, t_Min, rain)
 
