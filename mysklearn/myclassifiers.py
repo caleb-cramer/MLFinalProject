@@ -532,7 +532,7 @@ class MyRandomForestClassifier:
             return tree[1] # leaf class label
 
 
-    def fit(self, X_train, y_train, X_test, y_test):
+    def fit(self, X_tr, y_tr):
         """Fits a decision tree classifier to X_train and y_train using the TDIDT (top down induction of decision tree) algorithm.
         Args:
             X_train(list of list of obj): The list of training instances (samples). 
@@ -546,6 +546,8 @@ class MyRandomForestClassifier:
             Store the tree in the tree attribute.
             Use attribute indexes to construct default attribute names (e.g. "att0", "att1", ...).
         """
+        X_train, X_test, y_train, y_test = myutils.random_stratified_split(X_tr, y_tr)
+
         trees = []
         for jj in range(self.N):
             tree = None
@@ -598,7 +600,6 @@ class MyRandomForestClassifier:
             for tree in self.best_M_trees:
                 treeResults.append(self.tdidt_predict(self.header, tree, instance))
             results.append(myutils.findMostFrequent(treeResults))
-            print(treeResults)
         return results
             
 

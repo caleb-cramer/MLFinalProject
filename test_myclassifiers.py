@@ -33,7 +33,7 @@ interviewData, interviewClasses = myutils.separate(interview_table, interview_he
 def test_decision_tree_classifier_fit():
 
     X_train, y_train, X_test, y_test = myutils.random_stratified_split(interviewData, interviewClasses)
-    interviewTest.fit(X_train, X_test, y_train, y_test)
+    interviewTest.fit(X_train, y_train)
     assert len(interviewTest.best_M_trees) == M
 
 def test_decision_tree_classifier_predict():
