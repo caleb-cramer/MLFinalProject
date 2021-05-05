@@ -31,7 +31,7 @@ def predict():
         result = {"prediction": prediction}
         return jsonify(result), 200
     else:
-        return [date, t_Max, t_Min], 400
+        return print([date, t_Max, t_Min]), 400
 
 def tdidt_predict(header, tree, instance):
     info_type = tree[0]
