@@ -2,7 +2,7 @@ import numpy as np
 import scipy.stats as stats 
 import math
 import mysklearn.myutils as myutils
-
+import mysklearn.myevaluation as myevaluation
 from mysklearn.myclassifiers import MySimpleLinearRegressor, MyKNeighborsClassifier, MyNaiveBayesClassifier, MyDecisionTreeClassifier, MyRandomForestClassifier
 
 interview_header = ["level", "lang", "tweets", "phd", "interviewed_well"]
@@ -32,8 +32,8 @@ interviewData, interviewClasses = myutils.separate(interview_table, interview_he
 
 def test_decision_tree_classifier_fit():
 
-    X_train, y_train, X_test, y_test = myutils.random_stratified_split(interviewData, interviewClasses)
-    interviewTest.fit(X_train, y_train)
+    X_tr, X_t, y_tr, y_t = myevaluation.train_test_split(interviewData,interviewClasses)
+    interviewTest.fit(X_tr, y_tr)
     assert len(interviewTest.best_M_trees) == M
 
 def test_decision_tree_classifier_predict():
