@@ -1,8 +1,8 @@
 import requests # lib to make http requests
 import json # lib to help with parsing JSON objects
 
-# Dec-08,0.16,55.0,50.0,TRUE
-url = "https://rain-app-eric-caleb.herokuapp.com/predict?att0=Dec-08&att1=55.0&att2=50.0"
+# 8-Dec,0.16,55.0,50.0,TRUE
+url = "https://rain-app-eric-caleb.herokuapp.com/predict?att0=8-Dec&att1=55.0&att2=50.0"
 # url = "https://interview-flask-app.herokuapp.com/predict?level=Junior&lang=Java&tweets=yes&phd=yes"
 # url = "http://127.0.0.1:5000/predict?level=Junior&lang=Java&tweets=yes&phd=yes"
 
