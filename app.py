@@ -25,7 +25,6 @@ def predict():
     # rain = request.args.get("att3", "")
 
     prediction = predict_rain_well([date, t_Max, t_Min])
-    
 
     if prediction is not None:
         result = {"prediction": prediction}
