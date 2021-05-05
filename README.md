@@ -5,9 +5,9 @@ Eric Av and Caleb Cramer
 
 ## Dataset Description
 
-1. **Source**:  [Australia Rain](https://www.kaggle.com/jsphyg/weather-dataset-rattle-package)
+1. **Source**:  [Australia Rain](https://www.kaggle.com/jsphyg/weather-dataset-rattle-package) and [Seattle Rain](https://www.kaggle.com/rtatman/did-it-rain-in-seattle-19482017/metadata)
 1. **Format**: CSV file
-1. **Contents**: This file contains weather data from 10 years across 49 cities in Australia. There are 145k rows and 23 columns.
+1. **Contents**: This file contains weather data from 10 years across 49 cities in Australia. There are 145k rows and 23 columns. The second file contains weather data from Sea-Tac airport since 1948. It has 25000 instances and 5 attributes.
 1. **Column Names**: Date, Location, MinTemp, MaxTemp, Rainfall, Evaporation, Sunshine, WindGustDir, WindGustSpeed, WindDir9am, WindDir3pm, WindSpeed9am, WindSpeed3pm, Humidity9am, Humidity3pm, Pressure9am, Pressure3pm, Cloud9am, Cloud3pm, Temp9am, Temp3pm, RainToday 
 1. **Class Label**: RainTomorrow, a Yes/No string which will tell us if it is going to rain tomorrow...
 
@@ -19,8 +19,9 @@ Eric Av and Caleb Cramer
 1. **Why should I care?**: These results can help us predict rainfall on a given day, week, even month averages due to the dataset being from 10 consecutive years all over Australia’s regions. Therefore this might have been useful when the fires were raging in Australia last year to forecast rain based on a previous years.
 1. **Who cares?**: Well Eric and I want to get a good grade so we care. Also anyone who lives in Australia might care, even though the data is old-ish. Fellow machine learning people. Meteorologists too.
 
-## TODO
-1. Run the algo 5 times for each variation of N,M,F and print outthe values, the accuracy, and confusion matrices
-    1. Wide range of values and large numbers for N
-1. Output normal decision tree too
+## How to Run
+
+
+## Project Organization
+
 
