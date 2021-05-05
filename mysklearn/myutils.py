@@ -344,6 +344,40 @@ def get_sea_frequencies(MyPyTable, col_name):
 
     return months, yes_col
 
+def get_from_folds(X_vals, y_vals, train_folds, test_folds):
+    """Get X and y train and tests from given X and y values and train and test folds
+
+    Args:
+        X(list of obj): The list of samples
+        The shape of X is (n_samples, n_features)
+        y(list of obj): The target y values (parallel to X)
+        The shape of y is n_samples
+        train_folds(list of list of int): The list of training set indices for each fold.
+        test_folds(list of list of int): The list of testing set indices for each fold.
+    Returns:
+        X_train(list of list of obj): The list of training samples
+        X_test(list of list of obj): The list of testing samples
+        y_train(list of obj): The list of target y values for training (parallel to X_train)
+        y_test(list of obj): The list of target y values for testing (parallel to X_test)"""
+    ### get trains
+    X_train = []
+    y_train = []
+    for row in train_folds:
+        for i in row:
+            X_train.append(X_vals[i])
+            y_train.append(y_vals[i])
+
+    ### get tests
+    X_test = []
+    y_test = []
+    for row in test_folds:
+        for i in row:
+            X_test.append(X_vals[i])
+            y_test.append(y_vals[i])
+
+    return X_train, y_train, X_test, y_test
+
+
 def get_mpg_frequencies(MyPyTable, col_name):
     """Gets the frequency and count of a column by name
 
