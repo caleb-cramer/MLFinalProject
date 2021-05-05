@@ -34,7 +34,7 @@ def predict():
 
 def tdidt_predict(header, tree, instance):
     info_type = tree[0]
-    if info_type == "Attribute":
+    if 'Attribute' in info_type:
         attribute_index = header.index(tree[1])
         instance_value = instance[attribute_index]
         # now I need to find which "edge" to follow recursively
