@@ -6,7 +6,6 @@ url = "https://rain-app-eric-caleb.herokuapp.com/predict?att0=Jul-08&att1=11.0&a
 # url = "https://interview-flask-app.herokuapp.com/predict?level=Junior&lang=Java&tweets=yes&phd=yes"
 # url = "http://127.0.0.1:5000/predict?level=Junior&lang=Java&tweets=yes&phd=yes"
 
-
 # make a GET request to get the search results back
 # https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods
 response = requests.get(url=url)
