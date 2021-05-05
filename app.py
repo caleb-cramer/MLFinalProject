@@ -52,10 +52,12 @@ def predict_rain_well(instance):
     header, tree = pickle.load(infile)
     infile.close()
 
-    try: 
+    prediction = tdidt_predict(header, tree, instance)
+    return prediction
+    '''try: 
         return tdidt_predict(header, tree, instance) # recursive function
     except:
-        return None
+        return None'''
 
 '''# one for the /predict 
 @app.route("/predict", methods=["GET"])
