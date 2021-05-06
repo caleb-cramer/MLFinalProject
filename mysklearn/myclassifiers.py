@@ -366,6 +366,7 @@ class MyDecisionTreeClassifier:
         return tree
 
     def tdidt_predict(self,header, tree, instance):
+        """Iterates through the tree and finds the correct path to predict the correct element"""
         info_type = tree[0]
         if info_type == "Attribute":
             attribute_index = self.header.index(tree[1])
@@ -439,13 +440,13 @@ class MyDecisionTreeClassifier:
 class MyRandomForestClassifier:
     """Represents a decision tree classifier.
     Attributes:
-        X_train(list of list of obj): The list of training instances (samples). 
-                The shape of X_train is (n_train_samples, n_features)
-        y_train(list of obj): The target y values (parallel to X_train). 
-            The shape of y_train is n_samples
-        tree(nested list): The extracted tree model.
+        M(int): The number of best trees to save
+        N(int): The number of trees to make and then choose M best ones
+        F(int): The number of features the algorithm gets to choose from at each node
+        best_M_trees(list of trees): The best M trees sorted by accuracy
+        domain(list of string): all of the possible attributes
+        header(list of string): column_names
     Notes:
-        Loosely based on sklearn's DecisionTreeClassifier: https://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeClassifier.html
         Terminology: instance = sample = row and attribute = feature = column
     """
     def __init__(self, M, N, F):
@@ -475,6 +476,7 @@ class MyRandomForestClassifier:
         return partitions
 
     def tdidt(self, current_instances, available_attributes):
+        """Recursive algorithm to produce a decision tree"""
         # basic approach (uses recursion!!):
         # select an attribute to split on
         split_attribute = myutils.select_attribute(current_instances, available_attributes, self.header)
@@ -518,6 +520,7 @@ class MyRandomForestClassifier:
         return tree
 
     def tdidt_predict(self,header, tree, instance):
+        """Iterates through the tree and finds the correct path to predict the correct element"""
         info_type = tree[0]
         if info_type == "Attribute":
             attribute_index = self.header.index(tree[1])
@@ -535,9 +538,9 @@ class MyRandomForestClassifier:
     def fit(self, X_tr, y_tr):
         """Fits a decision tree classifier to X_train and y_train using the TDIDT (top down induction of decision tree) algorithm.
         Args:
-            X_train(list of list of obj): The list of training instances (samples). 
+            X_tr(list of list of obj): The list of training instances (samples). 
                 The shape of X_train is (n_train_samples, n_features)
-            y_train(list of obj): The target y values (parallel to X_train)
+            y_tr(list of obj): The target y values (parallel to X_train)
                 The shape of y_train is n_train_samples
         Notes:
             Since TDIDT is an eager learning algorithm, this method builds a decision tree model
@@ -577,7 +580,6 @@ class MyRandomForestClassifier:
         
         # Thank you stackoverflow
         # https://stackoverflow.com/questions/6618515/sorting-list-based-on-values-from-another-list
-
         sortedtrees = [x for _,x in sorted(zip(performances, trees))]
 
         self.best_M_trees = sortedtrees[:self.M]
